@@ -2,3 +2,7 @@
 .idea
 .DS_Store
 .vscode
+main.go
+*.log
+log/
+logs/

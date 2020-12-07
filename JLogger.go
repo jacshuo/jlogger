@@ -1,6 +1,6 @@
 //JFrame框架的日志记录器，基于Golang标准Log库的封装，不依赖其他
 // 第三方库。
-package JLogger
+package main
 
 import (
 	"fmt"
@@ -51,16 +51,16 @@ func GetJLogger(writer io.Writer, flag int) *JLogger {
 // ./log/{filename}中的按照日期分割的文本日志， 如果需要输出到其他的日志流，
 // 请自行实现io.writer接口。Logger可以脱离JFrame框架环境独立使用，只需额外指定日志文件名称和writer即可。
 // 无需非得Application实例化后App.logger使用。
-func GetMultiWriteLogger(logFileName string, writers ...io.Writer) *JLogger {
+func GetMultiWriteLogger(logPath string, logFileName string, writers ...io.Writer) *JLogger {
 	once.Do(
 		func() {
 			currentDate := time.Now().Format("20060102")
 			var logFileNewName string
 			if logFileName == "" {
 				logFileName = "JLogger"
-				logFileNewName = fmt.Sprintf("./log/%s-%s.log", logFileName, currentDate)
+				logFileNewName = fmt.Sprintf("%s/%s-%s.log", logPath, logFileName, currentDate)
 			} else {
-				logFileNewName = fmt.Sprintf("./log/%s-%s.log", logFileName, currentDate)
+				logFileNewName = fmt.Sprintf("%s/%s-%s.log", logPath, logFileName, currentDate)
 			}
 			logFile, err := os.OpenFile(logFileNewName, os.O_CREATE|os.O_APPEND|os.O_RDWR, 0666)
 			if err != nil {
