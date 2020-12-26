@@ -3,7 +3,7 @@
 ## Install
 
 ```bash
-go get github/jacshuo/jlogger
+go get github.com/jacshuo/jlogger
 ```
 
 ## Usage
