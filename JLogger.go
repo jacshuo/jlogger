@@ -1,6 +1,6 @@
 //JFrame框架的日志记录器，基于Golang标准Log库的封装，不依赖其他
 // 第三方库。
-package main
+package JLogger
 
 import (
 	"fmt"
